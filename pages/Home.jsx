@@ -2,6 +2,8 @@ import React from 'react'
 import Input from '../components/Input';
 import Check from '../components/Check';
 import '../styles/Home.css';
+// import Body from '../components/ProductRow';
+import ProductRow from '../components/ProductRow';
 
 export default function Home() {
     const PRODUCTS = [  
@@ -14,9 +16,27 @@ export default function Home() {
     ];
     const [value, setValue] = React.useState('');
     const [isStocked, setIsStocked] = React.useState(false);
+    const affiche = [];
     const onChange = (e) => {
         setValue(e.target.value);
     }
+    let lastCategory = null;
+    const visible = PRODUCTS.filter((product) => {
+        if(isStocked && product.stocked){
+            return false;
+        }
+        if(value && product.name.toLowerCase().indexOf(value.toLowerCase()) === -1){
+            return false;
+        }
+        return true;
+    });
+    visible.forEach((product) => {
+        if(affiche !== product.category){
+            affiche.push(<ProductRow key={product.name} liste={product} />);
+        }
+
+        lastCategory = product.category;
+    })
   return (
     <div className='Home'>
         <header>
@@ -32,7 +52,7 @@ export default function Home() {
                     </tr>
                 </thead>
                 <tbody>
-                    {PRODUCTS.}
+                    {affiche}
                 </tbody>
             </table>
         </section>

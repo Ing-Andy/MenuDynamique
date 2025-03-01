@@ -8,7 +8,7 @@ export default function Input({onchange, value, placeholder}) {
             placeholder={placeholder}
             value={value}
             onChange={onchange}
-            style={{width: '300px', height: '30px'}}
+            style={{width: '300px', height: '30px',outline:'none'}}
         />
     </div>
   )
