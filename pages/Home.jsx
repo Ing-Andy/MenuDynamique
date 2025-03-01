@@ -20,9 +20,12 @@ export default function Home() {
     const onChange = (e) => {
         setValue(e.target.value);
     }
+    const onCheck = (e) => {
+        setIsStocked(e.target.checked);
+    }
     let lastCategory = null;
     const visible = PRODUCTS.filter((product) => {
-        if(isStocked && product.stocked){
+        if(isStocked && !product.stocked){
             return false;
         }
         if(value && product.name.toLowerCase().indexOf(value.toLowerCase()) === -1){
@@ -41,7 +44,7 @@ export default function Home() {
     <div className='Home'>
         <header>
             <Input placeholder='Search...' value={value} onchange={onChange} />
-            <Check label=' les produits stockers' id='stocked'value={isStocked} onchange={onChange} />
+            <Check label=' les produits stockers' id='stocked'value={isStocked} onchange={onCheck} />
         </header>
         <section>
             <table>

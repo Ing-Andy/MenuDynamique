@@ -7,8 +7,10 @@ export default function Check({onchange, value, label , id}) {
             type="checkbox"
             id={id}
             className='checkBox'
+            value={value}
+            onChange={onchange}
         />
-        <label for={id}>{label}</label>
+        <label htmlFor={id}>{label}</label>
     </div>
   )
 }
